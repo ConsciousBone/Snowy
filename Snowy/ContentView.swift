@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var searchText = ""
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            Tab("Home", systemImage: "house") {
+                HomeView()
+            }
+            
+            Tab("My Igloo", systemImage: "snowflake") {
+                IglooView()
+            }
+            
+            Tab("Search", systemImage: "magnifyingglass", role: .search) {
+                SearchView(searchText: $searchText)
+            }
         }
-        .padding()
     }
 }
 
