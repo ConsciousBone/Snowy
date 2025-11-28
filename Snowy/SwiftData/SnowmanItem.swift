@@ -15,20 +15,21 @@ import SwiftData
     var ball0Size: Double
     var ball1Size: Double
     var ball2Size: Double
+    var ballColourIndex: Int
     
     var showingButtons: Bool
-    var buttonStyle: Int // 0 circle, 1 square, 2 triangle
+    //var buttonStyle: Int // 0 circle, 1 square, 2 triangle
     var buttonColourIndex: Int
     
     var showingEyes: Bool
-    var eyeStyle: Int // 0 circle, 1 square, 2 triangle
+    //var eyeStyle: Int // 0 circle, 1 square, 2 triangle
     var eyeColourIndex: Int
     
     var showingHat: Bool
     var hatColourIndex: Int
     
     var showingNose: Bool
-    var noseStyleIndex: Int // 0 circle, 1 square, 2 triangle
+    //var noseStyle: Int // 0 circle, 1 square, 2 triangle
     var noseColourIndex: Int
     
     var id = UUID()
@@ -39,16 +40,17 @@ import SwiftData
         ball0Size: Double,
         ball1Size: Double,
         ball2Size: Double,
+        ballColourIndex: Int,
         showingButtons: Bool,
-        buttonStyle: Int,
+        //buttonStyle: Int,
         buttonColourIndex: Int,
         showingEyes: Bool,
-        eyeStyle: Int,
+        //eyeStyle: Int,
         eyeColourIndex: Int,
         showingHat: Bool,
         hatColourIndex: Int,
         showingNose: Bool,
-        noseStyleIndex: Int,
+        //noseStyle: Int,
         noseColourIndex: Int,
         id: UUID = UUID()
     ) {
@@ -57,16 +59,17 @@ import SwiftData
         self.ball0Size = ball0Size
         self.ball1Size = ball1Size
         self.ball2Size = ball2Size
+        self.ballColourIndex = ballColourIndex
         self.showingButtons = showingButtons
-        self.buttonStyle = buttonStyle
+        //self.buttonStyle = buttonStyle
         self.buttonColourIndex = buttonColourIndex
         self.showingEyes = showingEyes
-        self.eyeStyle = eyeStyle
+        //self.eyeStyle = eyeStyle
         self.eyeColourIndex = eyeColourIndex
         self.showingHat = showingHat
         self.hatColourIndex = hatColourIndex
         self.showingNose = showingNose
-        self.noseStyleIndex = noseStyleIndex
+        //self.noseStyle = noseStyle
         self.noseColourIndex = noseColourIndex
         self.id = id
     }

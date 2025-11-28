@@ -38,8 +38,16 @@ struct SnowmanPreviewView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            
+            Circle()
+                .foregroundStyle(accentColours[ballColourIndex])
+                .frame(width: ball2Size)
+            Circle()
+                .foregroundStyle(accentColours[ballColourIndex])
+                .frame(width: ball1Size)
+            Circle()
+                .foregroundStyle(accentColours[ballColourIndex])
+                .frame(width: ball0Size)
         }
-        .background(Color(.secondarySystemFill))
+        .background(Color(.systemFill))
     }
 }

@@ -12,19 +12,22 @@ struct SnowmanCreationView: View {
     @State private var ball1Size: Double = 100
     @State private var ball2Size: Double = 75
     
+    
     var body: some View {
         Text("Snowman creation view")
         VStack(spacing: 0) {
             Circle()
-                .foregroundStyle(.green)
-                .frame(width:ball2Size)
+                .foregroundStyle(.white.gradient)
+                .frame(width: ball2Size)
             Circle()
-                .foregroundStyle(.blue)
+                .foregroundStyle(.white.gradient)
                 .frame(width: ball1Size)
             Circle()
-                .foregroundStyle(.red)
+                .foregroundStyle(.white.gradient)
                 .frame(width: ball0Size)
         }
+        .padding()
+        .background(Color(.systemFill))
         
         VStack {
             Slider(
