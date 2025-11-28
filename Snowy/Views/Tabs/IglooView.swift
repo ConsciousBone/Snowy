@@ -9,7 +9,22 @@ import SwiftUI
 
 struct IglooView: View {
     var body: some View {
-        Text("Igloo view")
+        NavigationStack {
+            Form {
+                Section {
+                    Text("Igloo view")
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        print("showing add sheet")
+                    } label: {
+                        Label("Add", systemImage: "plus")
+                    }
+                }
+            }
+        }
     }
 }
 
