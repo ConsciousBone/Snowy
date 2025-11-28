@@ -16,14 +16,20 @@ import SwiftData
     var ball1Size: Double
     var ball2Size: Double
     
+    var showingButtons: Bool
     var buttonCount: Int
-    var buttonStyle: Int // 0 circle, 1 square
+    var buttonStyle: Int // 0 circle, 1 square, 2 triangle
+    var buttonColourIndex: Int
+    
+    var showingEyes: Bool
+    var eyeStyle: Int // 0 circle, 1 square, 2 triangle
+    var eyeColourIndex: Int
     
     var showingHat: Bool
     var hatColourIndex: Int
     
     var showingNose: Bool
-    var noseStyleIndex: Int // 0 circle, 1 square
+    var noseStyleIndex: Int // 0 circle, 1 square, 2 triangle
     var noseColourIndex: Int
     
     var id = UUID()
@@ -34,8 +40,13 @@ import SwiftData
         ball0Size: Double,
         ball1Size: Double,
         ball2Size: Double,
+        showingButtons: Bool,
         buttonCount: Int,
         buttonStyle: Int,
+        buttonColourIndex: Int,
+        showingEyes: Bool,
+        eyeStyle: Int,
+        eyeColourIndex: Int,
         showingHat: Bool,
         hatColourIndex: Int,
         showingNose: Bool,
@@ -45,21 +56,21 @@ import SwiftData
     ) {
         self.snowmanName = snowmanName
         self.creationDate = creationDate
-        
         self.ball0Size = ball0Size
         self.ball1Size = ball1Size
         self.ball2Size = ball2Size
-        
+        self.showingButtons = showingButtons
         self.buttonCount = buttonCount
         self.buttonStyle = buttonStyle
-        
+        self.buttonColourIndex = buttonColourIndex
+        self.showingEyes = showingEyes
+        self.eyeStyle = eyeStyle
+        self.eyeColourIndex = eyeColourIndex
         self.showingHat = showingHat
         self.hatColourIndex = hatColourIndex
-        
         self.showingNose = showingNose
         self.noseStyleIndex = noseStyleIndex
         self.noseColourIndex = noseColourIndex
-        
         self.id = id
     }
 }
