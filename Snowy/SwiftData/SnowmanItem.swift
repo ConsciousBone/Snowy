@@ -17,7 +17,6 @@ import SwiftData
     var ball2Size: Double
     
     var showingButtons: Bool
-    var buttonCount: Int
     var buttonStyle: Int // 0 circle, 1 square, 2 triangle
     var buttonColourIndex: Int
     
@@ -41,7 +40,6 @@ import SwiftData
         ball1Size: Double,
         ball2Size: Double,
         showingButtons: Bool,
-        buttonCount: Int,
         buttonStyle: Int,
         buttonColourIndex: Int,
         showingEyes: Bool,
@@ -60,7 +58,6 @@ import SwiftData
         self.ball1Size = ball1Size
         self.ball2Size = ball2Size
         self.showingButtons = showingButtons
-        self.buttonCount = buttonCount
         self.buttonStyle = buttonStyle
         self.buttonColourIndex = buttonColourIndex
         self.showingEyes = showingEyes

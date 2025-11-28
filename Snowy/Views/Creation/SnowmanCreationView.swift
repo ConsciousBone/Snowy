@@ -8,8 +8,50 @@
 import SwiftUI
 
 struct SnowmanCreationView: View {
+    @State private var ball0Size: Double = 125
+    @State private var ball1Size: Double = 100
+    @State private var ball2Size: Double = 75
+    
     var body: some View {
         Text("Snowman creation view")
+        VStack(spacing: 0) {
+            Circle()
+                .foregroundStyle(.green)
+                .frame(width:ball2Size)
+            Circle()
+                .foregroundStyle(.blue)
+                .frame(width: ball1Size)
+            Circle()
+                .foregroundStyle(.red)
+                .frame(width: ball0Size)
+        }
+        
+        VStack {
+            Slider(
+                value: $ball2Size,
+                in: 50...150,
+                step: 1.0,
+                label: { Text("a") },
+                minimumValueLabel: { Text("a") },
+                maximumValueLabel: { Text("b") }
+            )
+            Slider(
+                value: $ball1Size,
+                in: 50...150,
+                step: 1.0,
+                label: { Text("a") },
+                minimumValueLabel: { Text("a") },
+                maximumValueLabel: { Text("b") }
+            )
+            Slider(
+                value: $ball0Size,
+                in: 50...150,
+                step: 1.0,
+                label: { Text("a") },
+                minimumValueLabel: { Text("a") },
+                maximumValueLabel: { Text("b") }
+            )
+        }
     }
 }
 

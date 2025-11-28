@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct IglooView: View {
+    @State private var showingAddSheet = false
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -15,14 +17,20 @@ struct IglooView: View {
                     Text("Igloo view")
                 }
             }
+            .navigationTitle("My Igloo")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         print("showing add sheet")
+                        showingAddSheet.toggle()
                     } label: {
                         Label("Add", systemImage: "plus")
                     }
                 }
+            }
+            .sheet(isPresented: $showingAddSheet) {
+                Text("a")
             }
         }
     }
