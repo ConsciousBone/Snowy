@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SnowmanCreationView: View {
+    @FocusState var isInputActive: Bool
+    @Environment(\.presentationMode) var presentationMode
+    
     let accentColours = [
         Color.red.gradient, Color.orange.gradient,
         Color.yellow.gradient, Color.green.gradient,
@@ -92,6 +95,7 @@ struct SnowmanCreationView: View {
                         TextField(text: $snowmanName) {
                             Text("Name")
                         }
+                        .focused($isInputActive)
                     } header: {
                         Text("Snowman name")
                     }
@@ -233,21 +237,40 @@ struct SnowmanCreationView: View {
                     }
                 }
             }
-            .scrollDismissesKeyboard(.immediately)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
                         print("saving snowman")
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Label("Save", systemImage: "plus")
                     }
                 }
+                
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        print("closing sheet")
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Label("Close", systemImage: "xmark")
+                    }
+                }
+                
+                ToolbarItem(placement: .keyboard) {
+                    Button {
+                        isInputActive = false
+                    } label: {
+                        Label("Close keyboard", systemImage: "keyboard.chevron.compact.down")
+                    }
+                }
             }
+            .scrollDismissesKeyboard(.immediately)
         }
-        
     }
 }
 
 #Preview {
-    SnowmanCreationView()
+    NavigationStack {
+        SnowmanCreationView()
+    }
 }

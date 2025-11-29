@@ -30,7 +30,9 @@ struct IglooView: View {
                 }
             }
             .sheet(isPresented: $showingAddSheet) {
-                SnowmanCreationView()
+                NavigationStack {
+                    SnowmanCreationView()
+                }
             }
         }
     }
