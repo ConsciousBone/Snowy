@@ -64,21 +64,21 @@ struct SnowmanCreationView: View {
     var body: some View {
         VStack(spacing: 0) {
             SnowmanPreviewView(
-                ball0Showing: $ball0Showing,
-                ball1Showing: $ball1Showing,
-                ball2Showing: $ball2Showing,
-                ball0Size: $ball0Size,
-                ball1Size: $ball1Size,
-                ball2Size: $ball2Size,
-                ballColourIndex: $ballColourIndex,
-                showingButtons: $showingButtons,
-                buttonColourIndex: $buttonColourIndex,
-                buttonCount: $buttonCount,
-                showingEyes: $showingEyes,
-                eyeColourIndex: $eyeColourIndex,
-                showingNose: $showingNose,
-                noseColourIndex: $noseColourIndex,
-                backgroundColourIndex: $backgroundColourIndex
+                ball0Showing: ball0Showing,
+                ball1Showing: ball1Showing,
+                ball2Showing: ball2Showing,
+                ball0Size: ball0Size,
+                ball1Size: ball1Size,
+                ball2Size: ball2Size,
+                ballColourIndex: ballColourIndex,
+                showingButtons: showingButtons,
+                buttonColourIndex: buttonColourIndex,
+                buttonCount: buttonCount,
+                showingEyes: showingEyes,
+                eyeColourIndex: eyeColourIndex,
+                showingNose: showingNose,
+                noseColourIndex: noseColourIndex,
+                backgroundColourIndex: backgroundColourIndex
             )
             .frame(maxHeight: UIScreen.main.bounds.height / 3) // 1/3 of screen
             .padding()

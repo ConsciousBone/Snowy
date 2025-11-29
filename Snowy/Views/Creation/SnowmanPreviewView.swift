@@ -16,32 +16,32 @@ struct SnowmanPreviewView: View {
         Color.white.gradient, Color.black.gradient
     ]
     
-    @Binding var ball0Showing: Bool
-    @Binding var ball1Showing: Bool
-    @Binding var ball2Showing: Bool
+    var ball0Showing: Bool
+    var ball1Showing: Bool
+    var ball2Showing: Bool
     
-    @Binding var ball0Size: Double
-    @Binding var ball1Size: Double
-    @Binding var ball2Size: Double
-    @Binding var ballColourIndex: Int
+    var ball0Size: Double
+    var ball1Size: Double
+    var ball2Size: Double
+    var ballColourIndex: Int
     
-    @Binding var showingButtons: Bool
-    //@Binding var buttonStyle: Int // 0 circle, 1 square, 2 triangle
-    @Binding var buttonColourIndex: Int
-    @Binding var buttonCount: Double
+    var showingButtons: Bool
+    //var buttonStyle: Int // 0 circle, 1 square, 2 triangle
+    var buttonColourIndex: Int
+    var buttonCount: Double
     
-    @Binding var showingEyes: Bool
-    //@Binding var eyeStyle: Int // 0 circle, 1 square, 2 triangle
-    @Binding var eyeColourIndex: Int
+    var showingEyes: Bool
+    //var eyeStyle: Int // 0 circle, 1 square, 2 triangle
+    var eyeColourIndex: Int
     
-    //@Binding var showingHat: Bool
-    //@Binding var hatColourIndex: Int
+    //var showingHat: Bool
+    //var hatColourIndex: Int
     
-    @Binding var showingNose: Bool
-    //@Binding var noseStyle: Int // 0 circle, 1 square, 2 triangle
-    @Binding var noseColourIndex: Int
+    var showingNose: Bool
+    //var noseStyle: Int // 0 circle, 1 square, 2 triangle
+    var noseColourIndex: Int
     
-    @Binding var backgroundColourIndex: Int
+    var backgroundColourIndex: Int
     
     var body: some View {
         GeometryReader { geo in

@@ -6,15 +6,51 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct IglooView: View {
+    @Environment(\.modelContext) var modelContext
+    @Query(sort: \SnowmanItem.creationDate, order: .reverse) var snowmanItems: [SnowmanItem]
+    
     @State private var showingAddSheet = false
+    
+    let accentColours = [
+        Color.red.gradient, Color.orange.gradient,
+        Color.yellow.gradient, Color.green.gradient,
+        Color.mint.gradient, Color.blue.gradient,
+        Color.purple.gradient, Color.brown.gradient,
+        Color.white.gradient, Color.black.gradient
+    ]
     
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    Text("Igloo view")
+                ForEach(snowmanItems) { snowman in
+                    Section {
+                        VStack(alignment: .leading) {
+                            SnowmanRowView(item: snowman)
+                                .padding()
+                                .frame(height: 200)
+                                .background(accentColours[snowman.backgroundColourIndex])
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                            Text(snowman.snowmanName)
+                                .font(.headline)
+                                .padding(.horizontal, 5)
+                                .padding(.top, 2)
+                            Text("Created on \(snowman.creationDate.formatted(date: .long, time: .shortened))")
+                                .padding(.horizontal, 5)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .listRowSeparator(.hidden)
+                }
+                .onDelete { indexSet in
+                    withAnimation {
+                        indexSet
+                            .map{snowmanItems[$0]}
+                            .forEach(modelContext.delete)
+                    }
                 }
             }
             .navigationTitle("My Igloo")
@@ -40,4 +76,5 @@ struct IglooView: View {
 
 #Preview {
     IglooView()
+        .modelContainer(mockContainer)
 }
