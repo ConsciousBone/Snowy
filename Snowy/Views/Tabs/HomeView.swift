@@ -95,7 +95,7 @@ struct HomeView: View {
                         VStack(alignment: .leading) {
                             Text("You have no snowmen in your igloo!")
                                 .font(.headline)
-                            Text("Go to the Igloo tab to add one.")
+                            Text("Go to the My Igloo tab to add one.")
                                 .font(.subheadline)
                         }
                         .padding(5)

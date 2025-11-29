@@ -18,6 +18,8 @@ struct SnowmanDetailView: View {
     
     var snowman: SnowmanItem
     
+    @State private var showingEditSheet = false
+    
     var body: some View {
         Form {
             Section {
@@ -42,6 +44,7 @@ struct SnowmanDetailView: View {
             Section {
                 Button {
                     print("editing snowman")
+                    showingEditSheet.toggle()
                 } label: {
                     Label("Edit \(snowman.snowmanName)", systemImage: "pencil")
                 }
@@ -49,5 +52,10 @@ struct SnowmanDetailView: View {
         }
         .navigationTitle(snowman.snowmanName)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showingEditSheet) {
+            NavigationStack {
+                SnowmanEditView(snowman: snowman)
+            }
+        }
     }
 }
