@@ -40,6 +40,7 @@ struct SnowmanCreationView: View {
     @State private var ball1Size: Double = 100
     @State private var ball2Size: Double = 75
     @State private var ballColourIndex = 8
+    @State private var ballStyle = 0 // 0 circle, 1 square
     
     @State private var showingButtons = true
     @State private var buttonStyle = 0 // 0 circle, 1 square
@@ -52,11 +53,8 @@ struct SnowmanCreationView: View {
     @State private var eyeStyle = 0 // 0 circle, 1 square
     @State private var eyeColourIndex = 9
     
-    //@State private var showingHat = false
-    //@State private var hatColourIndex = 5
-    
     @State private var showingNose = true
-    //@State private var noseStyle: Int // 0 circle, 1 square
+    @State private var noseStyle = 0 // 0 circle, 1 square
     @State private var noseColourIndex = 1
     
     @State private var backgroundColourIndex = 9
@@ -73,6 +71,7 @@ struct SnowmanCreationView: View {
                 ball1Size: ball1Size,
                 ball2Size: ball2Size,
                 ballColourIndex: ballColourIndex,
+                ballStyle: ballStyle,
                 showingButtons: showingButtons,
                 buttonStyle: buttonStyle,
                 buttonColourIndex: buttonColourIndex,
@@ -81,6 +80,7 @@ struct SnowmanCreationView: View {
                 eyeStyle: eyeStyle,
                 eyeColourIndex: eyeColourIndex,
                 showingNose: showingNose,
+                noseStyle: noseStyle,
                 noseColourIndex: noseColourIndex,
                 backgroundColourIndex: backgroundColourIndex
             )
@@ -140,6 +140,13 @@ struct SnowmanCreationView: View {
                             Text("Eye style")
                         }
 
+                        Picker(selection: $noseStyle) {
+                            ForEach(styles.indices, id: \.self) { index in
+                                Text(styles[index])
+                            }
+                        } label: {
+                            Text("Nose style")
+                        }
                     }
                     
                     Section {
@@ -180,6 +187,14 @@ struct SnowmanCreationView: View {
                     }
                     
                     Section {
+                        Picker(selection: $ballStyle) {
+                            ForEach(styles.indices, id: \.self) { index in
+                                Text(styles[index])
+                            }
+                        } label: {
+                            Text("Ball style")
+                        }
+                        
                         Picker(selection: $buttonStyle) {
                             ForEach(styles.indices, id: \.self) { index in
                                 Text(styles[index])
@@ -280,6 +295,7 @@ struct SnowmanCreationView: View {
                             ball1Size: ball1Size,
                             ball2Size: ball2Size,
                             ballColourIndex: ballColourIndex,
+                            ballStyle: ballStyle,
                             showingButtons: showingButtons,
                             buttonStyle: buttonStyle,
                             buttonColourIndex: buttonColourIndex,
@@ -288,6 +304,7 @@ struct SnowmanCreationView: View {
                             eyeStyle: eyeStyle,
                             eyeColourIndex: eyeColourIndex,
                             showingNose: showingNose,
+                            noseStyle: noseStyle,
                             noseColourIndex: noseColourIndex,
                             backgroundColourIndex: backgroundColourIndex
                         )

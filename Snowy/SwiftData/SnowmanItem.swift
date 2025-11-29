@@ -20,7 +20,7 @@ import SwiftData
     var ball1Size: Double
     var ball2Size: Double
     var ballColourIndex: Int
-    //var ballStyle: Int // 0 circle, 1 square
+    var ballStyle: Int // 0 circle, 1 square
     
     var showingButtons: Bool
     var buttonStyle: Int // 0 circle, 1 square
@@ -31,11 +31,8 @@ import SwiftData
     var eyeStyle: Int // 0 circle, 1 square
     var eyeColourIndex: Int
     
-    //var showingHat: Bool
-    //var hatColourIndex: Int
-    
     var showingNose: Bool
-    //var noseStyle: Int // 0 circle, 1 square
+    var noseStyle: Int // 0 circle, 1 square
     var noseColourIndex: Int
     
     var backgroundColourIndex: Int
@@ -52,7 +49,7 @@ import SwiftData
         ball1Size: Double,
         ball2Size: Double,
         ballColourIndex: Int,
-        //ballStyle: Int
+        ballStyle: Int,
         showingButtons: Bool,
         buttonStyle: Int,
         buttonColourIndex: Int,
@@ -60,10 +57,8 @@ import SwiftData
         showingEyes: Bool,
         eyeStyle: Int,
         eyeColourIndex: Int,
-        //showingHat: Bool,
-        //hatColourIndex: Int,
         showingNose: Bool,
-        //noseStyle: Int,
+        noseStyle: Int,
         noseColourIndex: Int,
         backgroundColourIndex: Int,
         id: UUID = UUID()
@@ -77,7 +72,7 @@ import SwiftData
         self.ball1Size = ball1Size
         self.ball2Size = ball2Size
         self.ballColourIndex = ballColourIndex
-        //self.ballStyle = ballStyle
+        self.ballStyle = ballStyle
         self.buttonCount = buttonCount
         self.showingButtons = showingButtons
         self.buttonStyle = buttonStyle
@@ -85,10 +80,8 @@ import SwiftData
         self.showingEyes = showingEyes
         self.eyeStyle = eyeStyle
         self.eyeColourIndex = eyeColourIndex
-        //self.showingHat = showingHat
-        //self.hatColourIndex = hatColourIndex
         self.showingNose = showingNose
-        //self.noseStyle = noseStyle
+        self.noseStyle = noseStyle
         self.noseColourIndex = noseColourIndex
         self.backgroundColourIndex = backgroundColourIndex
         self.id = id

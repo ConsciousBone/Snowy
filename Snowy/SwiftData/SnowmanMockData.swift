@@ -24,6 +24,7 @@ let mockContainer: ModelContainer = {
             ball1Size: 100,
             ball2Size: 75,
             ballColourIndex: 8,
+            ballStyle: 0,
             showingButtons: true,
             buttonStyle: 0,
             buttonColourIndex: 9,
@@ -32,6 +33,7 @@ let mockContainer: ModelContainer = {
             eyeStyle: 1,
             eyeColourIndex: 9,
             showingNose: true,
+            noseStyle: 1,
             noseColourIndex: 1,
             backgroundColourIndex: 9
         ),
@@ -40,11 +42,12 @@ let mockContainer: ModelContainer = {
             creationDate: .now.addingTimeInterval(-7200),
             ball0Showing: true,
             ball1Showing: true,
-            ball2Showing: false,
+            ball2Showing: true,
             ball0Size: 130,
             ball1Size: 110,
             ball2Size: 60,
             ballColourIndex: 7,
+            ballStyle: 1,
             showingButtons: false,
             buttonStyle: 0,
             buttonColourIndex: 3,
@@ -53,6 +56,7 @@ let mockContainer: ModelContainer = {
             eyeStyle: 0,
             eyeColourIndex: 0,
             showingNose: true,
+            noseStyle: 0,
             noseColourIndex: 2,
             backgroundColourIndex: 5
         )

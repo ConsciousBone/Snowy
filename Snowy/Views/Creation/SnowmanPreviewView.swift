@@ -24,6 +24,7 @@ struct SnowmanPreviewView: View {
     var ball1Size: Double
     var ball2Size: Double
     var ballColourIndex: Int
+    var ballStyle: Int
     
     var showingButtons: Bool
     var buttonStyle: Int // 0 circle, 1 square
@@ -34,11 +35,8 @@ struct SnowmanPreviewView: View {
     var eyeStyle: Int // 0 circle, 1 square
     var eyeColourIndex: Int
     
-    //var showingHat: Bool
-    //var hatColourIndex: Int
-    
     var showingNose: Bool
-    //var noseStyle: Int // 0 circle, 1 square
+    var noseStyle: Int // 0 circle, 1 square
     var noseColourIndex: Int
     
     var backgroundColourIndex: Int
@@ -66,68 +64,145 @@ struct SnowmanPreviewView: View {
             
             VStack(spacing: 0) {
                 if ball2Showing {
-                    Circle()
-                        .foregroundStyle(accentColours[ballColourIndex])
-                        .frame(width: ball2Size, height: ball2Size)
-                        .overlay {
-                            VStack {
-                                if showingEyes {
-                                    HStack {
-                                        if eyeStyle == 1 { // square
+                    if ballStyle == 1 {
+                        Rectangle()
+                            .foregroundStyle(accentColours[ballColourIndex])
+                            .frame(width: ball2Size, height: ball2Size)
+                            .overlay {
+                                VStack {
+                                    if showingEyes {
+                                        HStack {
+                                            if eyeStyle == 1 { // square
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[eyeColourIndex])
+                                                    .frame(width: ball2Size / 7, height: ball2Size / 7)
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[eyeColourIndex])
+                                                    .frame(width: ball2Size / 7, height: ball2Size / 7)
+                                            } else { // circle
+                                                Circle()
+                                                    .foregroundStyle(accentColours[eyeColourIndex])
+                                                    .frame(width: ball2Size / 6)
+                                                Circle()
+                                                    .foregroundStyle(accentColours[eyeColourIndex])
+                                                    .frame(width: ball2Size / 6)
+                                            }
+                                        }
+                                    }
+                                    
+                                    if showingNose {
+                                        if noseStyle == 1 { // square
                                             Rectangle()
-                                                .foregroundStyle(accentColours[eyeColourIndex])
-                                                .frame(width: ball2Size / 7, height: ball2Size / 7)
-                                            Rectangle()
-                                                .foregroundStyle(accentColours[eyeColourIndex])
-                                                .frame(width: ball2Size / 7, height: ball2Size / 7)
+                                                .foregroundStyle(accentColours[noseColourIndex])
+                                                .frame(width: ball2Size / 5, height: ball2Size / 5)
                                         } else { // circle
                                             Circle()
-                                                .foregroundStyle(accentColours[eyeColourIndex])
-                                                .frame(width: ball2Size / 6)
-                                            Circle()
-                                                .foregroundStyle(accentColours[eyeColourIndex])
-                                                .frame(width: ball2Size / 6)
+                                                .foregroundStyle(accentColours[noseColourIndex])
+                                                .frame(width: ball2Size / 4)
                                         }
                                     }
                                 }
-                                
-                                if showingNose {
-                                    Circle()
-                                        .foregroundStyle(accentColours[noseColourIndex])
-                                        .frame(width: ball2Size / 4)
+                            }
+                    } else { // circle
+                        Circle()
+                            .foregroundStyle(accentColours[ballColourIndex])
+                            .frame(width: ball2Size, height: ball2Size)
+                            .overlay {
+                                VStack {
+                                    if showingEyes {
+                                        HStack {
+                                            if eyeStyle == 1 { // square
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[eyeColourIndex])
+                                                    .frame(width: ball2Size / 7, height: ball2Size / 7)
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[eyeColourIndex])
+                                                    .frame(width: ball2Size / 7, height: ball2Size / 7)
+                                            } else { // circle
+                                                Circle()
+                                                    .foregroundStyle(accentColours[eyeColourIndex])
+                                                    .frame(width: ball2Size / 6)
+                                                Circle()
+                                                    .foregroundStyle(accentColours[eyeColourIndex])
+                                                    .frame(width: ball2Size / 6)
+                                            }
+                                        }
+                                    }
+                                    
+                                    if showingNose {
+                                        if noseStyle == 1 { // square
+                                            Rectangle()
+                                                .foregroundStyle(accentColours[noseColourIndex])
+                                                .frame(width: ball2Size / 5, height: ball2Size / 5)
+                                        } else { // circle
+                                            Circle()
+                                                .foregroundStyle(accentColours[noseColourIndex])
+                                                .frame(width: ball2Size / 4)
+                                        }
+                                    }
                                 }
                             }
-                        }
+                    }
                 }
                 
                 if ball1Showing {
-                    Circle()
-                        .foregroundStyle(accentColours[ballColourIndex])
-                        .frame(width: ball1Size, height: ball1Size)
-                        .overlay {
-                            VStack(spacing: 8) {
-                                if showingButtons {
-                                    ForEach(0..<Int(buttonCount), id: \.self) { index in
-                                        if buttonStyle == 1 { // square
-                                            Rectangle()
-                                                .foregroundStyle(accentColours[buttonColourIndex])
-                                                .frame(width: ball1Size / 6, height: ball1Size / 6)
-                                        } else { // fall back nicely to circle
-                                            Circle()
-                                                .foregroundStyle(accentColours[buttonColourIndex])
-                                                .frame(width: ball1Size / 5)
+                    if ballStyle == 1 { // square
+                        Rectangle()
+                            .foregroundStyle(accentColours[ballColourIndex])
+                            .frame(width: ball1Size, height: ball1Size)
+                            .overlay {
+                                VStack(spacing: 8) {
+                                    if showingButtons {
+                                        ForEach(0..<Int(buttonCount), id: \.self) { index in
+                                            if buttonStyle == 1 { // square
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[buttonColourIndex])
+                                                    .frame(width: ball1Size / 6, height: ball1Size / 6)
+                                            } else { // fall back nicely to circle
+                                                Circle()
+                                                    .foregroundStyle(accentColours[buttonColourIndex])
+                                                    .frame(width: ball1Size / 5)
+                                            }
                                         }
                                     }
                                 }
+                                .padding()
                             }
-                            .padding()
-                        }
+                    } else { // circle
+                        Circle()
+                            .foregroundStyle(accentColours[ballColourIndex])
+                            .frame(width: ball1Size, height: ball1Size)
+                            .overlay {
+                                VStack(spacing: 8) {
+                                    if showingButtons {
+                                        ForEach(0..<Int(buttonCount), id: \.self) { index in
+                                            if buttonStyle == 1 { // square
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[buttonColourIndex])
+                                                    .frame(width: ball1Size / 6, height: ball1Size / 6)
+                                            } else { // fall back nicely to circle
+                                                Circle()
+                                                    .foregroundStyle(accentColours[buttonColourIndex])
+                                                    .frame(width: ball1Size / 5)
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding()
+                            }
+                    }
                 }
                 
                 if ball0Showing {
-                    Circle()
-                        .foregroundStyle(accentColours[ballColourIndex])
-                        .frame(width: ball0Size, height: ball0Size)
+                    if ballStyle == 1 { // square
+                        Rectangle()
+                            .foregroundStyle(accentColours[ballColourIndex])
+                            .frame(width: ball0Size, height: ball0Size)
+                    } else { // circle
+                        Circle()
+                            .foregroundStyle(accentColours[ballColourIndex])
+                            .frame(width: ball0Size, height: ball0Size)
+                    }
                 }
             }
             .frame(width: naturalWidth, height: naturalHeight)

@@ -41,68 +41,145 @@ struct SnowmanRowView: View {
             
             VStack(spacing: 0) {
                 if item.ball2Showing {
-                    Circle()
-                        .foregroundStyle(accentColours[item.ballColourIndex])
-                        .frame(width: item.ball2Size, height: item.ball2Size)
-                        .overlay {
-                            VStack {
-                                if item.showingEyes {
-                                    HStack {
-                                        if item.eyeStyle == 1 { // square
+                    if item.ballStyle == 1 { // square
+                        Rectangle()
+                            .foregroundStyle(accentColours[item.ballColourIndex])
+                            .frame(width: item.ball2Size, height: item.ball2Size)
+                            .overlay {
+                                VStack {
+                                    if item.showingEyes {
+                                        HStack {
+                                            if item.eyeStyle == 1 { // square
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                    .frame(width: item.ball2Size / 7, height: item.ball2Size / 7)
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                    .frame(width: item.ball2Size / 7, height: item.ball2Size / 7)
+                                            } else { // circle
+                                                Circle()
+                                                    .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                    .frame(width: item.ball2Size / 6)
+                                                Circle()
+                                                    .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                    .frame(width: item.ball2Size / 6)
+                                            }
+                                        }
+                                    }
+                                    
+                                    if item.showingNose {
+                                        if item.noseStyle == 1 { // square
                                             Rectangle()
-                                                .foregroundStyle(accentColours[item.eyeColourIndex])
-                                                .frame(width: item.ball2Size / 7, height: item.ball2Size / 7)
-                                            Rectangle()
-                                                .foregroundStyle(accentColours[item.eyeColourIndex])
-                                                .frame(width: item.ball2Size / 7, height: item.ball2Size / 7)
+                                                .foregroundStyle(accentColours[item.noseColourIndex])
+                                                .frame(width: item.ball2Size / 5, height: item.ball2Size / 5)
                                         } else { // circle
                                             Circle()
-                                                .foregroundStyle(accentColours[item.eyeColourIndex])
-                                                .frame(width: item.ball2Size / 6)
-                                            Circle()
-                                                .foregroundStyle(accentColours[item.eyeColourIndex])
-                                                .frame(width: item.ball2Size / 6)
+                                                .foregroundStyle(accentColours[item.noseColourIndex])
+                                                .frame(width: item.ball2Size / 4)
                                         }
                                     }
                                 }
-                                
-                                if item.showingNose {
-                                    Circle()
-                                        .foregroundStyle(accentColours[item.noseColourIndex])
-                                        .frame(width: item.ball2Size / 4)
+                            }
+                    } else { // circle
+                        Circle()
+                            .foregroundStyle(accentColours[item.ballColourIndex])
+                            .frame(width: item.ball2Size, height: item.ball2Size)
+                            .overlay {
+                                VStack {
+                                    if item.showingEyes {
+                                        HStack {
+                                            if item.eyeStyle == 1 { // square
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                    .frame(width: item.ball2Size / 7, height: item.ball2Size / 7)
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                    .frame(width: item.ball2Size / 7, height: item.ball2Size / 7)
+                                            } else { // circle
+                                                Circle()
+                                                    .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                    .frame(width: item.ball2Size / 6)
+                                                Circle()
+                                                    .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                    .frame(width: item.ball2Size / 6)
+                                            }
+                                        }
+                                    }
+                                    
+                                    if item.showingNose {
+                                        if item.noseStyle == 1 { // square
+                                            Rectangle()
+                                                .foregroundStyle(accentColours[item.noseColourIndex])
+                                                .frame(width: item.ball2Size / 5, height: item.ball2Size / 5)
+                                        } else { // circle
+                                            Circle()
+                                                .foregroundStyle(accentColours[item.noseColourIndex])
+                                                .frame(width: item.ball2Size / 4)
+                                        }
+                                    }
                                 }
                             }
-                        }
+                    }
                 }
                 
                 if item.ball1Showing {
-                    Circle()
-                        .foregroundStyle(accentColours[item.ballColourIndex])
-                        .frame(width: item.ball1Size, height: item.ball1Size)
-                        .overlay {
-                            VStack(spacing: 8) {
-                                if item.showingButtons {
-                                    ForEach(0..<Int(item.buttonCount), id: \.self) { index in
-                                        if item.buttonStyle == 1 { // square
-                                            Rectangle()
-                                                .foregroundStyle(accentColours[item.buttonColourIndex])
-                                                .frame(width: item.ball1Size / 6, height: item.ball1Size / 6)
-                                        } else { // fall back nicely to circle
-                                            Circle()
-                                                .foregroundStyle(accentColours[item.buttonColourIndex])
-                                                .frame(width: item.ball1Size / 5)
+                    if item.ballStyle == 1 { // square
+                        Rectangle()
+                            .foregroundStyle(accentColours[item.ballColourIndex])
+                            .frame(width: item.ball1Size, height: item.ball1Size)
+                            .overlay {
+                                VStack(spacing: 8) {
+                                    if item.showingButtons {
+                                        ForEach(0..<Int(item.buttonCount), id: \.self) { index in
+                                            if item.buttonStyle == 1 { // square
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[item.buttonColourIndex])
+                                                    .frame(width: item.ball1Size / 6, height: item.ball1Size / 6)
+                                            } else { // fall back nicely to circle
+                                                Circle()
+                                                    .foregroundStyle(accentColours[item.buttonColourIndex])
+                                                    .frame(width: item.ball1Size / 5)
+                                            }
                                         }
                                     }
                                 }
+                                .padding()
                             }
-                            .padding()
-                        }
+                    } else { // circle
+                        Circle()
+                            .foregroundStyle(accentColours[item.ballColourIndex])
+                            .frame(width: item.ball1Size, height: item.ball1Size)
+                            .overlay {
+                                VStack(spacing: 8) {
+                                    if item.showingButtons {
+                                        ForEach(0..<Int(item.buttonCount), id: \.self) { index in
+                                            if item.buttonStyle == 1 { // square
+                                                Rectangle()
+                                                    .foregroundStyle(accentColours[item.buttonColourIndex])
+                                                    .frame(width: item.ball1Size / 6, height: item.ball1Size / 6)
+                                            } else { // fall back nicely to circle
+                                                Circle()
+                                                    .foregroundStyle(accentColours[item.buttonColourIndex])
+                                                    .frame(width: item.ball1Size / 5)
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding()
+                            }
+                    }
                 }
                 
                 if item.ball0Showing {
-                    Circle()
-                        .foregroundStyle(accentColours[item.ballColourIndex])
-                        .frame(width: item.ball0Size, height: item.ball0Size)
+                    if item.ballStyle == 1 { // square
+                        Rectangle()
+                            .foregroundStyle(accentColours[item.ballColourIndex])
+                            .frame(width: item.ball0Size, height: item.ball0Size)
+                    } else { // circle
+                        Circle()
+                            .foregroundStyle(accentColours[item.ballColourIndex])
+                            .frame(width: item.ball0Size, height: item.ball0Size)
+                    }
                 }
             }
             .frame(width: naturalWidth, height: naturalHeight)
