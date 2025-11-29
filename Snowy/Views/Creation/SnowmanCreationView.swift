@@ -46,10 +46,10 @@ struct SnowmanCreationView: View {
     @State private var buttonColourIndex = 9
     @State private var buttonCount: Double = 3
     
-    let buttonStyles = ["Circle", "Square"]
+    let styles = ["Circle", "Square"]
     
     @State private var showingEyes = true
-    //@State private var eyeStyle: Int // 0 circle, 1 square
+    @State private var eyeStyle = 0 // 0 circle, 1 square
     @State private var eyeColourIndex = 9
     
     //@State private var showingHat = false
@@ -78,6 +78,7 @@ struct SnowmanCreationView: View {
                 buttonColourIndex: buttonColourIndex,
                 buttonCount: buttonCount,
                 showingEyes: showingEyes,
+                eyeStyle: eyeStyle,
                 eyeColourIndex: eyeColourIndex,
                 showingNose: showingNose,
                 noseColourIndex: noseColourIndex,
@@ -131,6 +132,17 @@ struct SnowmanCreationView: View {
                     }
                     
                     Section {
+                        Picker(selection: $eyeStyle) {
+                            ForEach(styles.indices, id: \.self) { index in
+                                Text(styles[index])
+                            }
+                        } label: {
+                            Text("Eye style")
+                        }
+
+                    }
+                    
+                    Section {
                         Picker(selection: $eyeColourIndex) {
                             ForEach(accentColours.indices, id: \.self) { index in
                                 Text(accentColourNames[index])
@@ -169,8 +181,8 @@ struct SnowmanCreationView: View {
                     
                     Section {
                         Picker(selection: $buttonStyle) {
-                            ForEach(buttonStyles.indices, id: \.self) { index in
-                                Text(buttonStyles[index])
+                            ForEach(styles.indices, id: \.self) { index in
+                                Text(styles[index])
                             }
                         } label: {
                             Text("Button style")
@@ -273,6 +285,7 @@ struct SnowmanCreationView: View {
                             buttonColourIndex: buttonColourIndex,
                             buttonCount: buttonCount,
                             showingEyes: showingEyes,
+                            eyeStyle: eyeStyle,
                             eyeColourIndex: eyeColourIndex,
                             showingNose: showingNose,
                             noseColourIndex: noseColourIndex,

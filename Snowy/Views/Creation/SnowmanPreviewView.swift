@@ -31,7 +31,7 @@ struct SnowmanPreviewView: View {
     var buttonCount: Double
     
     var showingEyes: Bool
-    //var eyeStyle: Int // 0 circle, 1 square
+    var eyeStyle: Int // 0 circle, 1 square
     var eyeColourIndex: Int
     
     //var showingHat: Bool
@@ -73,12 +73,21 @@ struct SnowmanPreviewView: View {
                             VStack {
                                 if showingEyes {
                                     HStack {
-                                        Circle()
-                                            .foregroundStyle(accentColours[eyeColourIndex])
-                                            .frame(width: ball2Size / 6)
-                                        Circle()
-                                            .foregroundStyle(accentColours[eyeColourIndex])
-                                            .frame(width: ball2Size / 6)
+                                        if eyeStyle == 1 { // square
+                                            Rectangle()
+                                                .foregroundStyle(accentColours[eyeColourIndex])
+                                                .frame(width: ball2Size / 7, height: ball2Size / 7)
+                                            Rectangle()
+                                                .foregroundStyle(accentColours[eyeColourIndex])
+                                                .frame(width: ball2Size / 7, height: ball2Size / 7)
+                                        } else { // circle
+                                            Circle()
+                                                .foregroundStyle(accentColours[eyeColourIndex])
+                                                .frame(width: ball2Size / 6)
+                                            Circle()
+                                                .foregroundStyle(accentColours[eyeColourIndex])
+                                                .frame(width: ball2Size / 6)
+                                        }
                                     }
                                 }
                                 

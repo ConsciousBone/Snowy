@@ -48,12 +48,21 @@ struct SnowmanRowView: View {
                             VStack {
                                 if item.showingEyes {
                                     HStack {
-                                        Circle()
-                                            .foregroundStyle(accentColours[item.eyeColourIndex])
-                                            .frame(width: item.ball2Size / 6)
-                                        Circle()
-                                            .foregroundStyle(accentColours[item.eyeColourIndex])
-                                            .frame(width: item.ball2Size / 6)
+                                        if item.eyeStyle == 1 { // square
+                                            Rectangle()
+                                                .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                .frame(width: item.ball2Size / 7, height: item.ball2Size / 7)
+                                            Rectangle()
+                                                .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                .frame(width: item.ball2Size / 7, height: item.ball2Size / 7)
+                                        } else { // circle
+                                            Circle()
+                                                .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                .frame(width: item.ball2Size / 6)
+                                            Circle()
+                                                .foregroundStyle(accentColours[item.eyeColourIndex])
+                                                .frame(width: item.ball2Size / 6)
+                                        }
                                     }
                                 }
                                 
