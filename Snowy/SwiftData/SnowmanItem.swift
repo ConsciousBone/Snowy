@@ -30,12 +30,14 @@ import SwiftData
     //var eyeStyle: Int // 0 circle, 1 square, 2 triangle
     var eyeColourIndex: Int
     
-    var showingHat: Bool
-    var hatColourIndex: Int
+    //var showingHat: Bool
+    //var hatColourIndex: Int
     
     var showingNose: Bool
     //var noseStyle: Int // 0 circle, 1 square, 2 triangle
     var noseColourIndex: Int
+    
+    var backgroundColourIndex: Int
     
     var id = UUID()
     
@@ -56,11 +58,12 @@ import SwiftData
         showingEyes: Bool,
         //eyeStyle: Int,
         eyeColourIndex: Int,
-        showingHat: Bool,
-        hatColourIndex: Int,
+        //showingHat: Bool,
+        //hatColourIndex: Int,
         showingNose: Bool,
         //noseStyle: Int,
         noseColourIndex: Int,
+        backgroundColourIndex: Int,
         id: UUID = UUID()
     ) {
         self.snowmanName = snowmanName
@@ -79,11 +82,12 @@ import SwiftData
         self.showingEyes = showingEyes
         //self.eyeStyle = eyeStyle
         self.eyeColourIndex = eyeColourIndex
-        self.showingHat = showingHat
-        self.hatColourIndex = hatColourIndex
+        //self.showingHat = showingHat
+        //self.hatColourIndex = hatColourIndex
         self.showingNose = showingNose
         //self.noseStyle = noseStyle
         self.noseColourIndex = noseColourIndex
+        self.backgroundColourIndex = backgroundColourIndex
         self.id = id
     }
 }

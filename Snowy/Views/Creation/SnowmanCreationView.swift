@@ -15,6 +15,13 @@ struct SnowmanCreationView: View {
         Color.purple.gradient, Color.brown.gradient,
         Color.white.gradient, Color.black.gradient
     ]
+    let accentColourNames = [
+        "Red", "Orange",
+        "Yellow", "Green",
+        "Mint", "Blue",
+        "Purple", "Brown",
+        "White", "Black"
+    ]
     
     @State private var snowmanName = ""
     
@@ -36,15 +43,19 @@ struct SnowmanCreationView: View {
     //@State private var eyeStyle: Int // 0 circle, 1 square, 2 triangle
     @State private var eyeColourIndex = 9
     
-    @State private var showingHat = false
-    @State private var hatColourIndex = 5
+    //@State private var showingHat = false
+    //@State private var hatColourIndex = 5
     
     @State private var showingNose = true
     //@State private var noseStyle: Int // 0 circle, 1 square, 2 triangle
     @State private var noseColourIndex = 1
     
+    @State private var backgroundColourIndex = 9
+    
+    @State private var selectedControlSection = 0
+    
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             SnowmanPreviewView(
                 ball0Showing: $ball0Showing,
                 ball1Showing: $ball1Showing,
@@ -58,88 +69,182 @@ struct SnowmanCreationView: View {
                 buttonCount: $buttonCount,
                 showingEyes: $showingEyes,
                 eyeColourIndex: $eyeColourIndex,
-                showingHat: $showingHat,
-                hatColourIndex: $hatColourIndex,
                 showingNose: $showingNose,
-                noseColourIndex: $noseColourIndex
+                noseColourIndex: $noseColourIndex,
+                backgroundColourIndex: $backgroundColourIndex
             )
-            .frame(maxHeight: UIScreen.main.bounds.height / 3) // 1/2 of screen
+            .frame(maxHeight: UIScreen.main.bounds.height / 3) // 1/3 of screen
             .padding()
+            .background(accentColours[backgroundColourIndex])
+            
+            Picker("Control section", selection: $selectedControlSection) {
+                Text("General").tag(0)
+                Text("Face").tag(1)
+                Text("Body").tag(2)
+            }
+            .pickerStyle(.segmented)
+            .padding()
+            .background(Color(.systemGroupedBackground))
             
             Form {
-                Section {
-                    TextField(text: $snowmanName) {
-                        Text("Name")
+                if selectedControlSection == 0 { // general
+                    Section {
+                        TextField(text: $snowmanName) {
+                            Text("Name")
+                        }
+                    } header: {
+                        Text("Snowman name")
                     }
-                } header: {
-                    Text("Snowman name")
-                }
-                
-                Section {
-                    Toggle(isOn: $ball2Showing) {
-                        Text("Top ball")
+                    
+                    Section {
+                        Picker(selection: $backgroundColourIndex) {
+                            ForEach(accentColours.indices, id: \.self) { index in
+                                Text(accentColourNames[index])
+                            }
+                        } label: {
+                            Text("Background colour")
+                        }
                     }
-                    Toggle(isOn: $ball1Showing) {
-                        Text("Middle ball")
+                }
+                
+                if selectedControlSection == 1 { // face
+                    Section {
+                        Toggle(isOn: $showingEyes) {
+                            Text("Eyes")
+                        }
+                        Toggle(isOn: $showingNose) {
+                            Text("Nose")
+                        }
+                    } header: {
+                        Text("Visibility")
                     }
-                    Toggle(isOn: $ball0Showing) {
-                        Text("Bottom ball")
+                    
+                    Section {
+                        Picker(selection: $eyeColourIndex) {
+                            ForEach(accentColours.indices, id: \.self) { index in
+                                Text(accentColourNames[index])
+                            }
+                        } label: {
+                            Text("Eye colour")
+                        }
+                        
+                        Picker(selection: $noseColourIndex) {
+                            ForEach(accentColours.indices, id: \.self) { index in
+                                Text(accentColourNames[index])
+                            }
+                        } label: {
+                            Text("Nose colour")
+                        }
                     }
-                } header: {
-                    Text("Ball visibility")
                 }
                 
-                Section {
-                    Slider(
-                        value: $ball2Size,
-                        in: 50...150,
-                        label: { Text("Top ball size") },
-                        minimumValueLabel: { Text("50") },
-                        maximumValueLabel: { Text("150") }
-                    )
-                } header: {
-                    Text("Top ball size: \(ball2Size.formatted(.number.precision(.fractionLength(0))))")
+                if selectedControlSection == 2 { // body
+                    Section {
+                        Picker(selection: $ballColourIndex) {
+                            ForEach(accentColours.indices, id: \.self) { index in
+                                Text(accentColourNames[index])
+                            }
+                        } label: {
+                            Text("Ball colour")
+                        }
+                        Picker(selection: $buttonColourIndex) {
+                            ForEach(accentColours.indices, id: \.self) { index in
+                                Text(accentColourNames[index])
+                            }
+                        } label: {
+                            Text("Button colour")
+                        }
+                    }
+                    
+                    Section {
+                        Toggle(isOn: $ball2Showing) {
+                            Text("Top ball")
+                        }
+                        Toggle(isOn: $ball1Showing) {
+                            Text("Middle ball")
+                        }
+                        Toggle(isOn: $ball0Showing) {
+                            Text("Bottom ball")
+                        }
+                        if ball1Showing {
+                            Toggle(isOn: $showingButtons) {
+                                Text("Buttons")
+                            }
+                        }
+                    } header: {
+                        Text("Visibility")
+                    }
+                    
+                    if ball2Showing {
+                        Section {
+                            Slider(
+                                value: $ball2Size,
+                                in: 50...150,
+                                label: { Text("Top ball size") },
+                                minimumValueLabel: { Text("50") },
+                                maximumValueLabel: { Text("150") }
+                            )
+                        } header: {
+                            Text("Top ball size: \(ball2Size.formatted(.number.precision(.fractionLength(0))))")
+                        }
+                    }
+                    
+                    if ball1Showing {
+                        Section {
+                            Slider(
+                                value: $ball1Size,
+                                in: 50...150,
+                                label: { Text("Middle ball size") },
+                                minimumValueLabel: { Text("50") },
+                                maximumValueLabel: { Text("150") }
+                            )
+                        } header: {
+                            Text("Middle ball size: \(ball1Size.formatted(.number.precision(.fractionLength(0))))")
+                        }
+                    }
+                    
+                    if ball0Showing {
+                        Section {
+                            Slider(
+                                value: $ball0Size,
+                                in: 50...150,
+                                label: { Text("Bottom ball size") },
+                                minimumValueLabel: { Text("50") },
+                                maximumValueLabel: { Text("150") }
+                            )
+                        } header: {
+                            Text("Bottom ball size: \(ball0Size.formatted(.number.precision(.fractionLength(0))))")
+                        }
+                    }
+                    
+                    if showingButtons && ball1Showing {
+                        Section {
+                            Slider(
+                                value: $buttonCount,
+                                in: 1...6,
+                                step: 1,
+                                label: { Text("Button count") },
+                                minimumValueLabel: { Text("1") },
+                                maximumValueLabel: { Text("6") }
+                            )
+                        } header: {
+                            Text("Buttons: \(buttonCount.formatted(.number.precision(.fractionLength(0))))")
+                        }
+                    }
                 }
-                
-                Section {
-                    Slider(
-                        value: $ball1Size,
-                        in: 50...150,
-                        label: { Text("Middle ball size") },
-                        minimumValueLabel: { Text("50") },
-                        maximumValueLabel: { Text("150") }
-                    )
-                } header: {
-                    Text("Middle ball size: \(ball1Size.formatted(.number.precision(.fractionLength(0))))")
-                }
-                
-                Section {
-                    Slider(
-                        value: $ball0Size,
-                        in: 50...150,
-                        label: { Text("Bottom ball size") },
-                        minimumValueLabel: { Text("50") },
-                        maximumValueLabel: { Text("150") }
-                    )
-                } header: {
-                    Text("Bottom ball size: \(ball0Size.formatted(.number.precision(.fractionLength(0))))")
-                }
-                
-                Section {
-                    Slider(
-                        value: $buttonCount,
-                        in: 1...6,
-                        step: 1,
-                        label: { Text("Button count") },
-                        minimumValueLabel: { Text("1") },
-                        maximumValueLabel: { Text("6") }
-                    )
-                } header: {
-                    Text("Buttons: \(buttonCount.formatted(.number.precision(.fractionLength(0))))")
+            }
+            .scrollDismissesKeyboard(.immediately)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button {
+                        print("saving snowman")
+                    } label: {
+                        Label("Save", systemImage: "plus")
+                    }
                 }
             }
         }
-        .background(Color(.darkGray))
+        
     }
 }
 
