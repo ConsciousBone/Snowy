@@ -12,6 +12,10 @@ import SwiftData
     var snowmanName: String
     var creationDate: Date
     
+    var ball0Showing: Bool
+    var ball1Showing: Bool
+    var ball2Showing: Bool
+    
     var ball0Size: Double
     var ball1Size: Double
     var ball2Size: Double
@@ -20,6 +24,7 @@ import SwiftData
     var showingButtons: Bool
     //var buttonStyle: Int // 0 circle, 1 square, 2 triangle
     var buttonColourIndex: Int
+    var buttonCount: Double
     
     var showingEyes: Bool
     //var eyeStyle: Int // 0 circle, 1 square, 2 triangle
@@ -37,6 +42,9 @@ import SwiftData
     init(
         snowmanName: String,
         creationDate: Date,
+        ball0Showing: Bool,
+        ball1Showing: Bool,
+        ball2Showing: Bool,
         ball0Size: Double,
         ball1Size: Double,
         ball2Size: Double,
@@ -44,6 +52,7 @@ import SwiftData
         showingButtons: Bool,
         //buttonStyle: Int,
         buttonColourIndex: Int,
+        buttonCount: Double,
         showingEyes: Bool,
         //eyeStyle: Int,
         eyeColourIndex: Int,
@@ -56,10 +65,14 @@ import SwiftData
     ) {
         self.snowmanName = snowmanName
         self.creationDate = creationDate
+        self.ball0Showing = ball0Showing
+        self.ball1Showing = ball1Showing
+        self.ball2Showing = ball2Showing
         self.ball0Size = ball0Size
         self.ball1Size = ball1Size
         self.ball2Size = ball2Size
         self.ballColourIndex = ballColourIndex
+        self.buttonCount = buttonCount
         self.showingButtons = showingButtons
         //self.buttonStyle = buttonStyle
         self.buttonColourIndex = buttonColourIndex
