@@ -6,8 +6,24 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
+    let appDisplayName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Orbit"
+    // version stuff, ty searchino!
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+    let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
+     
+    @Query(sort: \SnowmanItem.creationDate, order: .reverse) var snowmanItems: [SnowmanItem]
+    
+    let accentColours = [
+        Color.red.gradient, Color.orange.gradient,
+        Color.yellow.gradient, Color.green.gradient,
+        Color.mint.gradient, Color.blue.gradient,
+        Color.purple.gradient, Color.brown.gradient,
+        Color.white.gradient, Color.black.gradient
+    ]
+    
     var greeting: String {
         let hour = Calendar.current.component(.hour, from: Date())
         
@@ -21,11 +37,78 @@ struct HomeView: View {
         }
     }
     
+    var newestSnowman: SnowmanItem? {
+        snowmanItems.first
+    }
+    
+    var randomSnowman: SnowmanItem? {
+        snowmanItems.randomElement()
+    }
+    
     var body: some View {
         Form {
             Section {
                 Text(greeting)
                     .font(.largeTitle)
+            } header: {
+                Text("\(appDisplayName) - version \(appVersion) build \(buildNumber)")
+            }
+            
+            if let snowman = newestSnowman {
+                Section {
+                    VStack(alignment: .leading) {
+                        SnowmanRowView(item: snowman)
+                            .padding()
+                            .frame(height: 200)
+                            .background(accentColours[snowman.backgroundColourIndex])
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                        Text(snowman.snowmanName)
+                            .font(.headline)
+                            .padding(.horizontal, 5)
+                            .padding(.top, 2)
+                        Text("Created on \(snowman.creationDate.formatted(date: .long, time: .shortened))")
+                            .padding(.horizontal, 5)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                } header: {
+                    Text("Newest snowman")
+                }
+                .listRowSeparator(.hidden)
+            } else {
+                Section {
+                    VStack(alignment: .leading) {
+                        Text("You have no snowmen in your igloo!")
+                            .font(.headline)
+                        Text("Go to the Igloo tab to add one.")
+                            .font(.subheadline)
+                    }
+                    .padding(5)
+                }
+                .listRowSeparator(.hidden)
+            }
+            
+            if let snowman = randomSnowman {
+                Section {
+                    VStack(alignment: .leading) {
+                        SnowmanRowView(item: snowman)
+                            .padding()
+                            .frame(height: 200)
+                            .background(accentColours[snowman.backgroundColourIndex])
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                        Text(snowman.snowmanName)
+                            .font(.headline)
+                            .padding(.horizontal, 5)
+                            .padding(.top, 2)
+                        Text("Created on \(snowman.creationDate.formatted(date: .long, time: .shortened))")
+                            .padding(.horizontal, 5)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                } header: {
+                    Text("Random snowman")
+                }
+                .listRowSeparator(.hidden)
             }
         }
     }
