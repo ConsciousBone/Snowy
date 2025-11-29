@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SnowmanCreationView: View {
     @FocusState var isInputActive: Bool
     @Environment(\.presentationMode) var presentationMode
+    
+    @Environment(\.modelContext) var modelContext
+    @State private var snowmanPath = [SnowmanItem]()
     
     let accentColours = [
         Color.red.gradient, Color.orange.gradient,
@@ -26,7 +30,7 @@ struct SnowmanCreationView: View {
         "White", "Black"
     ]
     
-    @State private var snowmanName = ""
+    @State private var snowmanName = "Frosty"
     
     @State private var ball0Showing = true
     @State private var ball1Showing = true
@@ -241,10 +245,32 @@ struct SnowmanCreationView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
                         print("saving snowman")
+                        let snowmanItem = SnowmanItem(
+                            snowmanName: snowmanName,
+                            creationDate: .now,
+                            ball0Showing: ball0Showing,
+                            ball1Showing: ball1Showing,
+                            ball2Showing: ball2Showing,
+                            ball0Size: ball0Size,
+                            ball1Size: ball1Size,
+                            ball2Size: ball2Size,
+                            ballColourIndex: ballColourIndex,
+                            showingButtons: showingButtons,
+                            buttonColourIndex: buttonColourIndex,
+                            buttonCount: buttonCount,
+                            showingEyes: showingEyes,
+                            eyeColourIndex: eyeColourIndex,
+                            showingNose: showingNose,
+                            noseColourIndex: noseColourIndex,
+                            backgroundColourIndex: backgroundColourIndex
+                        )
+                        modelContext.insert(snowmanItem)
+                        snowmanPath = [snowmanItem]
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Label("Save", systemImage: "plus")
                     }
+                    .disabled(snowmanName.isEmpty)
                 }
                 
                 ToolbarItem(placement: .cancellationAction) {
