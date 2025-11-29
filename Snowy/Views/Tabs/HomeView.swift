@@ -46,69 +46,99 @@ struct HomeView: View {
     }
     
     var body: some View {
-        Form {
-            Section {
-                Text(greeting)
-                    .font(.largeTitle)
-            } header: {
-                Text("\(appDisplayName) - version \(appVersion) build \(buildNumber)")
-            }
-            
-            if let snowman = newestSnowman {
+        NavigationStack {
+            Form {
                 Section {
-                    VStack(alignment: .leading) {
-                        SnowmanRowView(item: snowman)
-                            .padding()
-                            .frame(height: 200)
-                            .background(accentColours[snowman.backgroundColourIndex])
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                        Text(snowman.snowmanName)
-                            .font(.headline)
-                            .padding(.horizontal, 5)
-                            .padding(.top, 2)
-                        Text("Created on \(snowman.creationDate.formatted(date: .long, time: .shortened))")
-                            .padding(.horizontal, 5)
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                    }
+                    Text(greeting)
+                        .font(.largeTitle)
                 } header: {
-                    Text("Newest snowman")
+                    Text("\(appDisplayName) - version \(appVersion) build \(buildNumber)")
                 }
-                .listRowSeparator(.hidden)
-            } else {
-                Section {
-                    VStack(alignment: .leading) {
-                        Text("You have no snowmen in your igloo!")
-                            .font(.headline)
-                        Text("Go to the Igloo tab to add one.")
-                            .font(.subheadline)
+                
+                if let snowman = newestSnowman {
+                    Section {
+                        NavigationLink {
+                            SnowmanDetailView(snowman: snowman)
+                        } label: {
+                            VStack(alignment: .leading) {
+                                SnowmanRowView(item: snowman)
+                                    .padding()
+                                    .frame(height: 200)
+                                    .background(accentColours[snowman.backgroundColourIndex])
+                                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(snowman.snowmanName)
+                                            .font(.headline)
+                                            .padding(.horizontal, 5)
+                                            .padding(.top, 2)
+                                        Text("Created on \(snowman.creationDate.formatted(date: .long, time: .shortened))")
+                                            .padding(.horizontal, 5)
+                                            .font(.subheadline)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.forward")
+                                        .padding(5)
+                                        .font(.footnote.bold())
+                                        .foregroundStyle(.tertiary)
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("Newest snowman")
                     }
-                    .padding(5)
-                }
-                .listRowSeparator(.hidden)
-            }
-            
-            if let snowman = randomSnowman {
-                Section {
-                    VStack(alignment: .leading) {
-                        SnowmanRowView(item: snowman)
-                            .padding()
-                            .frame(height: 200)
-                            .background(accentColours[snowman.backgroundColourIndex])
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                        Text(snowman.snowmanName)
-                            .font(.headline)
-                            .padding(.horizontal, 5)
-                            .padding(.top, 2)
-                        Text("Created on \(snowman.creationDate.formatted(date: .long, time: .shortened))")
-                            .padding(.horizontal, 5)
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                    .navigationLinkIndicatorVisibility(.hidden)
+                    .listRowSeparator(.hidden)
+                } else {
+                    Section {
+                        VStack(alignment: .leading) {
+                            Text("You have no snowmen in your igloo!")
+                                .font(.headline)
+                            Text("Go to the Igloo tab to add one.")
+                                .font(.subheadline)
+                        }
+                        .padding(5)
                     }
-                } header: {
-                    Text("Random snowman")
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
+                
+                if let snowman = randomSnowman {
+                    Section {
+                        NavigationLink {
+                            SnowmanDetailView(snowman: snowman)
+                        } label: {
+                            VStack(alignment: .leading) {
+                                SnowmanRowView(item: snowman)
+                                    .padding()
+                                    .frame(height: 200)
+                                    .background(accentColours[snowman.backgroundColourIndex])
+                                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(snowman.snowmanName)
+                                            .font(.headline)
+                                            .padding(.horizontal, 5)
+                                            .padding(.top, 2)
+                                        Text("Created on \(snowman.creationDate.formatted(date: .long, time: .shortened))")
+                                            .padding(.horizontal, 5)
+                                            .font(.subheadline)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.forward")
+                                        .padding(5)
+                                        .font(.footnote.bold())
+                                        .foregroundStyle(.tertiary)
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("Random snowman")
+                    }
+                    .navigationLinkIndicatorVisibility(.hidden)
+                    .listRowSeparator(.hidden)
+                }
             }
         }
     }

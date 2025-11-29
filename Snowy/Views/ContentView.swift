@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     @State private var searchText = ""
@@ -29,4 +30,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(mockContainer)
 }
