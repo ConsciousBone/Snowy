@@ -1,0 +1,85 @@
+{
+  "fill" : {
+    "automatic-gradient" : "display-p3:0.36881,0.65205,0.97309,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "image-name" : "Untitled_Artwork-3.png",
+          "name" : "Untitled_Artwork-3",
+          "position" : {
+            "scale" : 1.4,
+            "translation-in-points" : [
+              0,
+              49
+            ]
+          }
+        },
+        {
+          "image-name" : "Untitled_Artwork-4.png",
+          "name" : "Untitled_Artwork-4",
+          "position" : {
+            "scale" : 1.5,
+            "translation-in-points" : [
+              0,
+              55
+            ]
+          }
+        },
+        {
+          "hidden" : false,
+          "image-name" : "Untitled_Artwork-2.png",
+          "name" : "Untitled_Artwork-2",
+          "position" : {
+            "scale" : 1.25,
+            "translation-in-points" : [
+              0,
+              5
+            ]
+          }
+        }
+      ],
+      "lighting" : "individual",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.15
+      }
+    },
+    {
+      "blur-material" : null,
+      "layers" : [
+        {
+          "image-name" : "Untitled_Artwork-1.png",
+          "name" : "Untitled_Artwork-1",
+          "position" : {
+            "scale" : 1.25,
+            "translation-in-points" : [
+              0,
+              25
+            ]
+          }
+        }
+      ],
+      "lighting" : "individual",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.25
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
