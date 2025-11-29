@@ -24,50 +24,73 @@ struct IglooView: View {
     
     var body: some View {
         NavigationStack {
-            Form {
-                ForEach(snowmanItems) { snowman in
-                    Section {
-                        VStack(alignment: .leading) {
-                            SnowmanRowView(item: snowman)
-                                .padding()
-                                .frame(height: 200)
-                                .background(accentColours[snowman.backgroundColourIndex])
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                            Text(snowman.snowmanName)
-                                .font(.headline)
-                                .padding(.horizontal, 5)
-                                .padding(.top, 2)
-                            Text("Created on \(snowman.creationDate.formatted(date: .long, time: .shortened))")
-                                .padding(.horizontal, 5)
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    .listRowSeparator(.hidden)
-                }
-                .onDelete { indexSet in
-                    withAnimation {
-                        indexSet
-                            .map{snowmanItems[$0]}
-                            .forEach(modelContext.delete)
-                    }
-                }
-            }
-            .navigationTitle("My Igloo")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
+            if snowmanItems.isEmpty {
+                ContentUnavailableView {
+                    Label("No snowmen", systemImage: "snow")
+                } description: {
+                    Text("You haven't added any snowmen to your igloo.")
+                } actions: {
                     Button {
-                        print("showing add sheet")
+                        print("showing add popup")
                         showingAddSheet.toggle()
                     } label: {
-                        Label("Add", systemImage: "plus")
+                        Label("Create a snowman", systemImage: "plus")
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+                .navigationTitle("My Igloo")
+                .navigationBarTitleDisplayMode(.inline)
+                .sheet(isPresented: $showingAddSheet) {
+                    NavigationStack {
+                        SnowmanCreationView()
                     }
                 }
-            }
-            .sheet(isPresented: $showingAddSheet) {
-                NavigationStack {
-                    SnowmanCreationView()
+            } else {
+                Form {
+                    ForEach(snowmanItems) { snowman in
+                        Section {
+                            VStack(alignment: .leading) {
+                                SnowmanRowView(item: snowman)
+                                    .padding()
+                                    .frame(height: 200)
+                                    .background(accentColours[snowman.backgroundColourIndex])
+                                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                                Text(snowman.snowmanName)
+                                    .font(.headline)
+                                    .padding(.horizontal, 5)
+                                    .padding(.top, 2)
+                                Text("Created on \(snowman.creationDate.formatted(date: .long, time: .shortened))")
+                                    .padding(.horizontal, 5)
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .listRowSeparator(.hidden)
+                    }
+                    .onDelete { indexSet in
+                        withAnimation {
+                            indexSet
+                                .map{snowmanItems[$0]}
+                                .forEach(modelContext.delete)
+                        }
+                    }
+                }
+                .navigationTitle("My Igloo")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button {
+                            print("showing add sheet")
+                            showingAddSheet.toggle()
+                        } label: {
+                            Label("Add", systemImage: "plus")
+                        }
+                    }
+                }
+                .sheet(isPresented: $showingAddSheet) {
+                    NavigationStack {
+                        SnowmanCreationView()
+                    }
                 }
             }
         }
