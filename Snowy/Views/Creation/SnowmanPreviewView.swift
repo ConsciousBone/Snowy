@@ -26,19 +26,19 @@ struct SnowmanPreviewView: View {
     var ballColourIndex: Int
     
     var showingButtons: Bool
-    //var buttonStyle: Int // 0 circle, 1 square, 2 triangle
+    var buttonStyle: Int // 0 circle, 1 square
     var buttonColourIndex: Int
     var buttonCount: Double
     
     var showingEyes: Bool
-    //var eyeStyle: Int // 0 circle, 1 square, 2 triangle
+    //var eyeStyle: Int // 0 circle, 1 square
     var eyeColourIndex: Int
     
     //var showingHat: Bool
     //var hatColourIndex: Int
     
     var showingNose: Bool
-    //var noseStyle: Int // 0 circle, 1 square, 2 triangle
+    //var noseStyle: Int // 0 circle, 1 square
     var noseColourIndex: Int
     
     var backgroundColourIndex: Int
@@ -99,9 +99,15 @@ struct SnowmanPreviewView: View {
                             VStack(spacing: 8) {
                                 if showingButtons {
                                     ForEach(0..<Int(buttonCount), id: \.self) { index in
-                                        Circle()
-                                            .foregroundStyle(accentColours[buttonColourIndex])
-                                            .frame(width: ball1Size / 5)
+                                        if buttonStyle == 1 { // square
+                                            Rectangle()
+                                                .foregroundStyle(accentColours[buttonColourIndex])
+                                                .frame(width: ball1Size / 6, height: ball1Size / 6)
+                                        } else { // fall back nicely to circle
+                                            Circle()
+                                                .foregroundStyle(accentColours[buttonColourIndex])
+                                                .frame(width: ball1Size / 5)
+                                        }
                                     }
                                 }
                             }

@@ -74,9 +74,15 @@ struct SnowmanRowView: View {
                             VStack(spacing: 8) {
                                 if item.showingButtons {
                                     ForEach(0..<Int(item.buttonCount), id: \.self) { index in
-                                        Circle()
-                                            .foregroundStyle(accentColours[item.buttonColourIndex])
-                                            .frame(width: item.ball1Size / 5)
+                                        if item.buttonStyle == 1 { // square
+                                            Rectangle()
+                                                .foregroundStyle(accentColours[item.buttonColourIndex])
+                                                .frame(width: item.ball1Size / 6, height: item.ball1Size / 6)
+                                        } else { // fall back nicely to circle
+                                            Circle()
+                                                .foregroundStyle(accentColours[item.buttonColourIndex])
+                                                .frame(width: item.ball1Size / 5)
+                                        }
                                     }
                                 }
                             }

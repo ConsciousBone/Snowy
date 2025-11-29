@@ -42,19 +42,21 @@ struct SnowmanCreationView: View {
     @State private var ballColourIndex = 8
     
     @State private var showingButtons = true
-    //@State private var buttonStyle: Int // 0 circle, 1 square, 2 triangle
+    @State private var buttonStyle = 0 // 0 circle, 1 square
     @State private var buttonColourIndex = 9
     @State private var buttonCount: Double = 3
     
+    let buttonStyles = ["Circle", "Square"]
+    
     @State private var showingEyes = true
-    //@State private var eyeStyle: Int // 0 circle, 1 square, 2 triangle
+    //@State private var eyeStyle: Int // 0 circle, 1 square
     @State private var eyeColourIndex = 9
     
     //@State private var showingHat = false
     //@State private var hatColourIndex = 5
     
     @State private var showingNose = true
-    //@State private var noseStyle: Int // 0 circle, 1 square, 2 triangle
+    //@State private var noseStyle: Int // 0 circle, 1 square
     @State private var noseColourIndex = 1
     
     @State private var backgroundColourIndex = 9
@@ -72,6 +74,7 @@ struct SnowmanCreationView: View {
                 ball2Size: ball2Size,
                 ballColourIndex: ballColourIndex,
                 showingButtons: showingButtons,
+                buttonStyle: buttonStyle,
                 buttonColourIndex: buttonColourIndex,
                 buttonCount: buttonCount,
                 showingEyes: showingEyes,
@@ -161,6 +164,16 @@ struct SnowmanCreationView: View {
                             }
                         } label: {
                             Text("Button colour")
+                        }
+                    }
+                    
+                    Section {
+                        Picker(selection: $buttonStyle) {
+                            ForEach(buttonStyles.indices, id: \.self) { index in
+                                Text(buttonStyles[index])
+                            }
+                        } label: {
+                            Text("Button style")
                         }
                     }
                     
@@ -256,6 +269,7 @@ struct SnowmanCreationView: View {
                             ball2Size: ball2Size,
                             ballColourIndex: ballColourIndex,
                             showingButtons: showingButtons,
+                            buttonStyle: buttonStyle,
                             buttonColourIndex: buttonColourIndex,
                             buttonCount: buttonCount,
                             showingEyes: showingEyes,

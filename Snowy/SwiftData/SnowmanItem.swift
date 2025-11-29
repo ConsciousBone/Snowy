@@ -22,19 +22,19 @@ import SwiftData
     var ballColourIndex: Int
     
     var showingButtons: Bool
-    //var buttonStyle: Int // 0 circle, 1 square, 2 triangle
+    var buttonStyle: Int // 0 circle, 1 square
     var buttonColourIndex: Int
     var buttonCount: Double
     
     var showingEyes: Bool
-    //var eyeStyle: Int // 0 circle, 1 square, 2 triangle
+    //var eyeStyle: Int // 0 circle, 1 square
     var eyeColourIndex: Int
     
     //var showingHat: Bool
     //var hatColourIndex: Int
     
     var showingNose: Bool
-    //var noseStyle: Int // 0 circle, 1 square, 2 triangle
+    //var noseStyle: Int // 0 circle, 1 square
     var noseColourIndex: Int
     
     var backgroundColourIndex: Int
@@ -52,7 +52,7 @@ import SwiftData
         ball2Size: Double,
         ballColourIndex: Int,
         showingButtons: Bool,
-        //buttonStyle: Int,
+        buttonStyle: Int,
         buttonColourIndex: Int,
         buttonCount: Double,
         showingEyes: Bool,
@@ -77,7 +77,7 @@ import SwiftData
         self.ballColourIndex = ballColourIndex
         self.buttonCount = buttonCount
         self.showingButtons = showingButtons
-        //self.buttonStyle = buttonStyle
+        self.buttonStyle = buttonStyle
         self.buttonColourIndex = buttonColourIndex
         self.showingEyes = showingEyes
         //self.eyeStyle = eyeStyle
