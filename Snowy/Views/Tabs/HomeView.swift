@@ -43,9 +43,6 @@ struct HomeView: View {
     
     @State private var randomSnowman: SnowmanItem?
     
-    @State private var showingSettingsSheet = false
-    @State private var showingAboutSheet = false
-    
     var body: some View {
         NavigationStack {
             Form {
@@ -155,30 +152,20 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .secondaryAction) {
-                    Button {
-                        print("showing about sheet")
-                        showingAboutSheet.toggle()
+                    NavigationLink {
+                        AboutView()
                     } label: {
                         Label("About \(appDisplayName)", systemImage: "info.circle")
                     }
                 }
                 
                 ToolbarItem(placement: .secondaryAction) {
-                    Button {
-                        print("showing settings sheet")
-                        showingSettingsSheet.toggle()
+                    NavigationLink {
+                        SettingsView()
                     } label: {
                         Label("Settings", systemImage: "gear")
                     }
                 }
-            }
-            .sheet(isPresented: $showingSettingsSheet) {
-                SettingsView()
-                    .presentationDetents([.medium, .large])
-            }
-            .sheet(isPresented: $showingAboutSheet) {
-                AboutView()
-                    .presentationDetents([.medium])
             }
         }
     }
