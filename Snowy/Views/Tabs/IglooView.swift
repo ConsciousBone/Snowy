@@ -43,6 +43,7 @@ struct IglooView: View {
                 .sheet(isPresented: $showingAddSheet) {
                     NavigationStack {
                         SnowmanCreationView()
+                            .interactiveDismissDisabled()
                     }
                 }
             } else {
@@ -104,6 +105,7 @@ struct IglooView: View {
                 .sheet(isPresented: $showingAddSheet) {
                     NavigationStack {
                         SnowmanCreationView()
+                            .interactiveDismissDisabled()
                     }
                 }
             }
