@@ -41,9 +41,7 @@ struct HomeView: View {
         snowmanItems.first
     }
     
-    var randomSnowman: SnowmanItem? {
-        snowmanItems.randomElement()
-    }
+    @State private var randomSnowman: SnowmanItem?
     
     var body: some View {
         NavigationStack {
@@ -87,6 +85,9 @@ struct HomeView: View {
                         }
                     } header: {
                         Text("Newest snowman")
+                    }
+                    .onAppear {
+                        randomSnowman = snowmanItems.randomElement()!
                     }
                     .navigationLinkIndicatorVisibility(.hidden)
                     .listRowSeparator(.hidden)
@@ -132,6 +133,13 @@ struct HomeView: View {
                                         .foregroundStyle(.tertiary)
                                 }
                             }
+                        }
+                        
+                        Button {
+                            print("shuffling random snowman")
+                            randomSnowman = snowmanItems.randomElement()!
+                        } label: {
+                            Label("Shuffle", systemImage: "shuffle")
                         }
                     } header: {
                         Text("Random snowman")
