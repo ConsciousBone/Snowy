@@ -66,6 +66,8 @@ struct AboutView: View {
                 }
             }
         }
+        .navigationTitle("About")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
