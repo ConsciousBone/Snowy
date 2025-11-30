@@ -11,7 +11,7 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section {
-                Text("Settings view")
+                Text("Settings sheet")
             }
         }
     }

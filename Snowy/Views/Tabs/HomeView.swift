@@ -148,6 +148,25 @@ struct HomeView: View {
                     .listRowSeparator(.hidden)
                 }
             }
+            .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .secondaryAction) {
+                    Button {
+                        print("showing about sheet")
+                    } label: {
+                        Label("About \(appDisplayName)", systemImage: "info.circle")
+                    }
+                }
+                
+                ToolbarItem(placement: .secondaryAction) {
+                    Button {
+                        print("showing settings sheet")
+                    } label: {
+                        Label("Settings", systemImage: "gear")
+                    }
+                }
+            }
         }
     }
 }
